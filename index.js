@@ -14,7 +14,7 @@ function managerInfo() {
     inquirer.prompt ([
         {
             name: 'name',
-            message: 'Enter Name:',
+            message: 'Enter Name: ',
             type: 'input',
         },
         {
@@ -24,12 +24,12 @@ function managerInfo() {
         },
         {
             name: 'email',
-            message: 'Enter Email:',
+            message: 'Enter Email: ',
             type: 'input',
         },
         {
             name: 'officeNum',
-            message: 'Enter Office Number:',
+            message: 'Enter Office Number: ',
             type: 'input',
         },
     ])
@@ -47,7 +47,7 @@ managerInfo();
 function newEmployee() {
     inquirer.createPromptModule({
         name: 'new',
-        message: 'Type of Employee?',
+        message: 'Type of Employee? (Press any other key if done): ',
         type: 'input',
     })
     .then((answers) => {
@@ -60,5 +60,69 @@ function newEmployee() {
         else{
             fs.writeFileSync('index.html', generateHtml(newTeam), "utf-8");
         }
+    })
+}
+
+// Intern
+
+function makeIntern() {
+    inquirer.prompt([
+        {
+            name: 'name',
+            message: 'Enter Name: ',
+            type: 'input',
+        },
+        {
+            name: 'id',
+            message: 'Enter ID: ',
+            type: 'input',
+        },
+        {
+            name: 'email',
+            message: 'Enter Email: ',
+            type: 'input',
+        },
+        {
+            name: 'school',
+            message: 'Enter School: ',
+            type: 'input',
+        },
+    ])
+    .then ((answers) => {
+        const newIntern = new Intern(answers.name, answers.id, answers.email, answers.school);
+        newTeam.push(newIntern);
+        newEmployee();
+    })
+}
+
+// Engineer
+
+function makeEngineer() {
+    inquirer.prompt([
+        {
+            name: 'name',
+            message: 'Enter Name: ',
+            type: 'input',
+        },
+        {
+            name: 'id',
+            message: 'Enter ID: ',
+            type: 'input',
+        },
+        {
+            name: 'email',
+            message: 'Enter Email: ',
+            type: 'input',
+        },
+        {
+            name: 'GitHub',
+            message: 'Enter GitHub: ',
+            type: 'input',
+        },
+    ])
+    .then ((answers) => {
+        const newEng = new Engineer(answers.name, answers.id, answers.email, answers.GitHub);
+        newTeam.push(newEng);
+        newEmployee();
     })
 }
