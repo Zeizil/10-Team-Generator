@@ -58,7 +58,7 @@ function newEmployee() {
             makeEngineer()
         }
         else{
-            fs.writeFileSync('index.html', generateHtml(newTeam), "utf-8");
+            fs.writeFileSync('index.html', makeHtml(newTeam), "utf-8");
         }
     })
 }
